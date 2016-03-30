@@ -43,7 +43,7 @@ sub FilePreparation {
 
 sub MainWork {
 	my ($fh, $oh) = @_;
-	my @data = 
+	my @data =
 	# <DATA>;
 	<$fh>;
 	my @data = map{chomp;$_}@data;
@@ -90,7 +90,7 @@ sub PrepareSortAndCount{
 sub MergeSortAndCountInversions {
 	#take array
 	my ($array, $n) = @_;
-	# half of count of elements	
+	# half of count of elements
 	my $half = round($n / 2);
 	# say "!! half: $half !!";
 	# say "!! n: $n !!";
@@ -99,19 +99,16 @@ sub MergeSortAndCountInversions {
 	my @rightArray = @{$array}[$half..$n-1];
 	# say "in Main: 0..${\($n-1)} whole array: @$array";
 	# say "in Main: 0..${\($half-1)} leftArray: @leftArray";
-	# say "in Main: $half..${\($n-1)} rightArray: @rightArray"; 
+	# say "in Main: $half..${\($n-1)} rightArray: @rightArray";
 	my ($leftCount, $leftArray, $leftSize) = MergeSortAndCountInversions(\@leftArray, $half);
-	# say "still there!";
 	my ($rightCount, $rightArray, $rightSize) = MergeSortAndCountInversions(\@rightArray, $n - $half);
-	# say "start count! $leftCount and $rightCount";
 	my ($splitCount, $mergedArray, $mergedSize) = MergeAndSplitAndCountInversions($leftArray, $leftSize, $rightArray, $rightSize);
-	#return $leftCount + $rightCount + $splitCount;
 	return ($leftCount + $rightCount + $splitCount, $mergedArray, $mergedSize)
 }
 
 sub MergeAndSplitAndCountInversions {
 	my ($leftArray, $leftSize, $rightArray, $rightSize) = @_;
-	
+
 	#we have first part of array sorted and second part of array sorted
 	my $n = ($leftSize + $rightSize);
 	my @outputArray = ();
@@ -120,9 +117,9 @@ sub MergeAndSplitAndCountInversions {
 	my $inversionCount = 0;
 	my @leftArray = @$leftArray;
 	my @rightArray = @$rightArray;
-	
+
 	# say "in Split: leftCount:$leftSize leftArray: @leftArray";
-	# say "in Split: rightCount:$rightSize rightArray: @rightArray"; 
+	# say "in Split: rightCount:$rightSize rightArray: @rightArray";
 
 	for (0..$n-1){
 
@@ -131,9 +128,9 @@ sub MergeAndSplitAndCountInversions {
 			# so, we have inversion, count this
 			# say "and I am here with left $leftArray[$leftIndex]";
 			if ( defined($leftArray[$leftIndex]) ){
-				$outputArray[$_] = $leftArray[$leftIndex];				
+				$outputArray[$_] = $leftArray[$leftIndex];
 				$leftIndex ++;
-			}			
+			}
 			else {
 				$inversionCount = $inversionCount + ($leftSize - $leftIndex);
 				$outputArray[$_] = $rightArray[$rightIndex];
@@ -142,9 +139,9 @@ sub MergeAndSplitAndCountInversions {
 		}
 		else{
 			# say "and I am here with right $rightArray[$rightIndex]";
-			if ( defined($rightArray[$rightIndex]) ) {				
+			if ( defined($rightArray[$rightIndex]) ) {
 				$inversionCount = $inversionCount + ($leftSize - $leftIndex);
-				$outputArray[$_] = $rightArray[$rightIndex];				
+				$outputArray[$_] = $rightArray[$rightIndex];
 				$rightIndex ++;
 			}
 			else {
@@ -250,7 +247,7 @@ sub SplitCount{
 	my $leftIndex = 0;
 	my $rightIndex = 0;
 	my $inversionCount = 0;
-	
+
 	for my $index (1..$n){
 		unless (defined($leftArray[$leftIndex]) or defined($rightArray[$rightIndex])) {
 			next;
@@ -258,7 +255,7 @@ sub SplitCount{
 		#say "I compare this: <$leftArray[$leftIndex]> and this <$rightArray[$rightIndex]>";
 		if ($rightArray[$rightIndex] > $leftArray[$leftIndex] ){
 			# so, we have inversion, count this
-			
+
 				# $outputArray[$index] = $leftArray[$leftIndex];
 				#shift $leftArray;
 				$leftIndex ++;
