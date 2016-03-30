@@ -37,7 +37,7 @@ sub Main {
 	}
 
 	my $graph = \%graph;
-	removeCurves($graph, keys %$graph);
+	removeLoops($graph, keys %$graph);
 
 	my $count = RandomizedGraphCutAlgorithm(\%graph);
 	say "I have crossing edges count: $count";
@@ -65,11 +65,11 @@ sub cutEdge{
 		$graph->{$randomVertex} = unionArraysWithoutVertexes($graph,$randomVertex,$randomConnect);
 		renameDestinationVertex ($graph,$randomConnect,$randomVertex);
 		sayAbout($graph,$randomVertex);
-		removeCurves($graph,$randomVertex);
+		removeLoops($graph,$randomVertex);
 		sayAbout($graph,$randomVertex);
 	}
 	until scalar keys %$graph == 2;
-	removeCurves($graph,keys %$graph);
+	removeLoops($graph,keys %$graph);
 }
 
 sub chooseRandomVertex{
@@ -85,7 +85,7 @@ sub chooseRandomConnect{
 	my $randomConnect = $keys[rand @keys];
 	return $randomConnect;
 }
-sub removeCurves{
+sub removeLoops{
 	my ($graph, @ones) = @_;
 	for my $one(@ones){
 		$graph->{$one} = [grep{!/\b$one\b/}@{$graph->{$one}}];
