@@ -1,25 +1,4 @@
-
-#-------- Begin ----------#
-# my $input = 'input.txt';
-# my $output = 'output.txt';
-# my ($fh,$oh);
-
-# open $fh, '<', $input;
-# open $oh, '>', $output;
-my ($input) = @ARGV;
-print "$input\n";
-my $out = '>';
-do {$output = "out.txt";
-	$out.=$out;
-} if defined $input;
-$input ||= 'input.txt';
-$output ||= 'output.txt';
-open $fh, '<', $input or die 'cant open $input! $!';
-open $oh, $out, $output or die 'cant open $output! $!';
-
 use Data::Dumper;
-$,=",";
-$"=",";
 sub say {
 	for(@_){
 		print;
@@ -29,39 +8,42 @@ sub say {
 	print{$oh}"\n";
 }
 
+#-------- Begin ----------#
+$,=",";
+$"=",";
 
-
-
-
-my @graphPresentation = <$fh>;
-# say scalar(@graphPresentation);
-my %graph;
-for (@graphPresentation){
-	my @each = (split /\s/);
-    my ($vertex,$connects) = (shift(@each),[sort{$b<=>$a}@each]);
-    $graph{$vertex} = $connects;
+sub FilePreparation {
+	my ($args) = shift;
+	my ($input) = @$args;
+	my $out = '>';
+	do {$output = "out.txt";
+		$out.=$out;
+	} if defined $input;
+	$input ||= 'input.txt';
+	$output ||= 'output.txt';
+	open $fh, '<', $input or die qq'cant open $input! $!';
+	open $oh, $out, $output or die qq'cant open $output! $!';
+	($fh, $oh);
 }
 
-# say (Dumper(\%graph));
+sub Main {
+	my ($fh, $oh) = @_;
+	my %graph = ();
 
-my $graph = \%graph;
+	while (defined(my $line = <$fh>)) {
+		my @each = (split /\s/, $line);
+	    my ($vertex,$connects) = (shift(@each),[sort{$b<=>$a}@each]);
+	    $graph{$vertex} = $connects;
+	}
 
-removeCurves($graph, keys %$graph);
+	my $graph = \%graph;
+	removeCurves($graph, keys %$graph);
 
-# sayAbout($graph,101,12);
-#$graph->{12} = unionArraysWithoutVertexs($graph,101,12);
-#sayAbout($graph,101,12);
-#renameDestinationVertex($graph,101,12);
-#sayAbout($graph,101,12);
-
-my $count = RandomizedGraphCutAlgorithm(\%graph);
-
-say "I have crossing edges count is: ".$count;
-
-#for (sort{$b<=>$a}keys %graph){ say "$_ --> [ $#{$graph{$_}}+1 ]"; sayAbout($graph,$_);}
-
-%graph = ();
-@graphPresentation = ();
+	my $count = RandomizedGraphCutAlgorithm(\%graph);
+	say "I have crossing edges count: $count";
+	say "$count";
+	$count;
+}
 
 sub RandomizedGraphCutAlgorithm{
 	my $graph = shift;
@@ -75,17 +57,16 @@ sub RandomizedGraphCutAlgorithm{
 sub cutEdge{
 	my $graph = shift;
 	do{
-	#<>;
-	my $randomVertex = chooseRandomVertex($graph);
-	my $randomConnect = chooseRandomConnect($graph,$randomVertex);
-	#glue together $randomVertex and $randomConnect connects
-   	# say "split $randomVertex and $randomConnect";
-	sayAbout($graph,$randomVertex,$randomConnect);
-	$graph->{$randomVertex} = unionArraysWithoutVertexes($graph,$randomVertex,$randomConnect);
-	renameDestinationVertex ($graph,$randomConnect,$randomVertex);
-	sayAbout($graph,$randomVertex);
-	removeCurves($graph,$randomVertex);
-	sayAbout($graph,$randomVertex);
+		my $randomVertex = chooseRandomVertex($graph);
+		my $randomConnect = chooseRandomConnect($graph,$randomVertex);
+		#glue together $randomVertex and $randomConnect connects
+	   	# say "split $randomVertex and $randomConnect";
+		sayAbout($graph,$randomVertex,$randomConnect);
+		$graph->{$randomVertex} = unionArraysWithoutVertexes($graph,$randomVertex,$randomConnect);
+		renameDestinationVertex ($graph,$randomConnect,$randomVertex);
+		sayAbout($graph,$randomVertex);
+		removeCurves($graph,$randomVertex);
+		sayAbout($graph,$randomVertex);
 	}
 	until scalar keys %$graph == 2;
 	removeCurves($graph,keys %$graph);
@@ -105,13 +86,13 @@ sub chooseRandomConnect{
 	return $randomConnect;
 }
 sub removeCurves{
-	my ($graph,@ones) = @_;
+	my ($graph, @ones) = @_;
 	for my $one(@ones){
 		$graph->{$one} = [grep{!/\b$one\b/}@{$graph->{$one}}];
 	}
 }
 sub renameDestinationVertex{
-	my ($graph,$two,$one) = @_;
+	my ($graph, $two, $one) = @_;
 	my $s = $graph->{$two};
 	# take access to all two's connections
 	for my $connection(@$s){
@@ -141,3 +122,5 @@ sub sayAbout{
 		# say $vertex, "--->","@{$graph->{$vertex}}" if exists $graph->{$vertex};
 	}
 }
+
+Main(FilePreparation(\@ARGV));
