@@ -1,0 +1,6 @@
+I have min path length: -14 
+	
+ and negative cycle exists: NO
+	
+ and total Time: 0
+

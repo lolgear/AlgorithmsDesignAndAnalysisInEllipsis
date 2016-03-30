@@ -1,0 +1,2 @@
+median is 55
+Total time: 1

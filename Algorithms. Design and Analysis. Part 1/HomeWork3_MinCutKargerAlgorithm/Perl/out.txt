@@ -1,0 +1,5 @@
+I have crossing edges count is: 78
+I have crossing edges count is: 43
+I have crossing edges count is: 21
+I have crossing edges count is: 216
+I have crossing edges count is: 23

@@ -1,0 +1,6 @@
+read part
+backward part
+reverse part
+forward part
+
+output is 434821,968,459,313,211

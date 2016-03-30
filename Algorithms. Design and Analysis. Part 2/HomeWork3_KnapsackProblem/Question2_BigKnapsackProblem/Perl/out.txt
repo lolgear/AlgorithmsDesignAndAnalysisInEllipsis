@@ -1,0 +1,3 @@
+I have optimal solution value
+12248
+

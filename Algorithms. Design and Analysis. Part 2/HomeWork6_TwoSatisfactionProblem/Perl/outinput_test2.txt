@@ -1,0 +1,6 @@
+I have min path length:  
+	
+ and Satisfy: 1
+	
+ and total Time: 0
+

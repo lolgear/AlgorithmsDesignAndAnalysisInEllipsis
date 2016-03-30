@@ -1,0 +1,8 @@
+11 4
+8       4
+10      5
+15      8
+4       3
+
+#Optimal Value: 19
+#Items In Bag: {3, 4}

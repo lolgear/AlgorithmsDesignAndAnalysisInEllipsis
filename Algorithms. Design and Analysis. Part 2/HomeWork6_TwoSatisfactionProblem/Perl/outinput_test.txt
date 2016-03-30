@@ -1,0 +1,6 @@
+I have min path length:  
+	
+ 
+	
+ and total Time: 0
+

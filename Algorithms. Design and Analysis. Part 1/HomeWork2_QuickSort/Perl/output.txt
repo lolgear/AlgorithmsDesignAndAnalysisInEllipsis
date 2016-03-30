@@ -1,0 +1,43 @@
+count of comparisons in QuickSort: <0>
+count of comparisons in QuickSort: <0>
+count of comparisons in QuickSort: <0>
+count of comparisons in QuickSort: <0>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <>
+count of comparisons in QuickSort: <>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+count of comparisons in QuickSort: <99999>
+I sort array and have count as FISRT-PIVOT-ELEMENT: 12,
+I sort array and have count as FISRT-PIVOT-ELEMENT: 12,
+I sort array and have count as FISRT-PIVOT-ELEMENT: 12
+I sort array and have count as FISRT-PIVOT-ELEMENT: 12
+I sort array and have count as FISRT-PIVOT-ELEMENT: 13
+I sort array and have count as FISRT-PIVOT-ELEMENT: 13
+I sort array and have count as FISRT-PIVOT-ELEMENT: 13
+I sort array and have count as FISRT-PIVOT-ELEMENT: 13
+I sort array and have count as FISRT-PIVOT-ELEMENT: 13
+I sort array and have count as FIRST-PIVOT-ELEMENT: 
+I sort array and have count as FINAL-PIVOT-ELEMENT: 
+I sort array and have count as MIDDLE-OF-THREE-PIVOT-ELEMENT: 
+I sort array and have count as FIRST-PIVOT-ELEMENT:  16
+I sort array and have count as FINAL-PIVOT-ELEMENT:  13
+I sort array and have count as MIDDLE-OF-THREE-PIVOT-ELEMENT:  21
+I sort array and have count as FIRST-PIVOT-ELEMENT:  16
+I sort array and have count as FINAL-PIVOT-ELEMENT:  13
+I sort array and have count as MIDDLE-OF-THREE-PIVOT-ELEMENT:  21
+I sort array and have count as FIRST-PIVOT-ELEMENT:  159750
+I sort array and have count as FINAL-PIVOT-ELEMENT:  162085
+I sort array and have count as MIDDLE-OF-THREE-PIVOT-ELEMENT:  158773
